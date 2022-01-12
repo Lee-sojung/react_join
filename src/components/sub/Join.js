@@ -12,6 +12,8 @@ function Join() {
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
+  const[isSubmit,setIsSubmit]= useState(false);
+  const[success,setSuccess] = useState(false);
 
   //input에 변화점이 생길때마다 실행될 함수
   const handleChange = e => {
@@ -29,6 +31,7 @@ function Join() {
   const handleSubmit = e => {
     //일단 기본 전송을 막음
     e.preventDefault();
+    setIsSubmit(true);
     //setErr로 기존의 err값을 변경
     //변경할 err객체내용을 반환해주는 check함수 호출
     setErr(check(val));
@@ -71,10 +74,13 @@ function Join() {
     //해당 코드 블록안에서 err스테이트에 담겨있는 객체값이 비어있으면 모든 인증을 통과한 상태라서 회원가입 완료처리
     console.log(err);
     const len = Object.keys(err).length;
-    if (len === 0) {
-      console.log('모든 인풋요소 인증통과')
+    if (len === 0 && isSubmit) {
+      console.log('인증성공')
+      setSuccess(true);
+      
     } else {
       console.log('인증실패');
+      setSuccess(false);
     }
   }, [err]);
 
@@ -82,6 +88,8 @@ function Join() {
     <main className="join">
       <div className="inner">
         <h1><a href="#">Join</a></h1>
+
+        {success ? <div>회원가입을 축하합니다.</div> : null }
 
         <form onSubmit={handleSubmit}>
           <fieldset>
