@@ -45,10 +45,13 @@ export default class Anime {
       //프로토타입 메서드에 인수를 전달할때는 익명함수로 감싸서 전달
       requestAnimationFrame(time=>this.run(time)); 
     }else{
-      if(this.option.callback) this.option.callback();
+      setTimeout(()=>{
+        if(this.option.callback) this.option.callback();
+      },0)
+  
     } 
     let result = this.currentValue + ((this.option.value - this.currentValue)*progress);    
-   
+
     if(this.isString==="string"){
       this.selector.style[this.option.prop] = `${result}%`;  
     }   

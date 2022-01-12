@@ -9,6 +9,23 @@ a {
   outline: 0;
 }
 
+table{
+  border-collapse: collapse ;
+  border: none;
+
+  th, td{
+    border: none;
+  }
+}
+fieldset{
+  border: none;
+}
+
 body {
   background: #efefef;
+}
+.h{
+  position: absolute;
+  top: -99999px;
+  opacity: 0;
 }
