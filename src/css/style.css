@@ -228,4 +228,8 @@ figure {
     color: #fff;
     cursor: pointer; }
 
+.join .inner .err {
+  font: 11px/1 "맑은고딕";
+  color: red; }
+
 /*# sourceMappingURL=style.css.map */
