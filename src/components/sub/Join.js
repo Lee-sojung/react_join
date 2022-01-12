@@ -28,7 +28,7 @@ function Join() {
     e.preventDefault();
     //setErr로 기존의 err값을 변경
     //변경할 err객체내용을 반환해주는 check함수 호출
-    setErr(check(err));
+    setErr(check(val));
   }
 
   //에러객체를 반환하는 함수
