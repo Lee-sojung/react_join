@@ -6,7 +6,8 @@ function Join() {
     userid: "",
     pwd1: "",
     pwd2: "",
-    email: ""
+    email: "",
+    comments: ""
   }
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const [val, setVal] = useState(initVal);
@@ -49,12 +50,16 @@ function Join() {
       errs.pwd1 = '비밀번호는 5글자 이상, 문자,숫자,특수문자를 모두 포함';
     }
 
-    if ( val.pwd1 !== val.pwd2) {
+    if (val.pwd1 !== val.pwd2) {
       errs.pwd2 = '2개의 비밀번호를 동일하게 입력';
     }
 
     if (!val.email || val.email.length < 8 || !/@/.test(val.email)) {
       errs.email = '이메일주소를 8글자이상 입력';
+    }
+
+    if (!val.comments || val.comments.length <10) {
+      errs.comments = '남기는말을 10글자 이상 입력';
     }
     return errs;
   }
@@ -151,6 +156,25 @@ function Join() {
                       onChange={handleChange}
                     />
                     <span className="err">{err.email}</span>
+                  </td>
+                </tr>
+                {/*comments*/}
+                <tr>
+                  <th scope="row">
+                    <label htmlFor="pwd2">COMMENTS</label>
+                  </th>
+                  <td>
+                    <textarea
+                      col='30'
+                      row='10'
+                      type="password"
+                      id="comments"
+                      name="comments"
+                      placeholder="남기는 말을 적어주세요"
+                      value={val.comments}
+                      onChange={handleChange}
+                    ></textarea>
+                    <span className="err">{err.comments}</span>
                   </td>
                 </tr>
                 <tr>
