@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 function Join() {
   //state로 관리할 초기 value값들
   const initVal = {
-    userid : ""
+    userid : "",
+    email : ""
   }
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const[val, setVal] = useState(initVal);
@@ -42,6 +43,9 @@ function Join() {
       //비어있는 err객체에 userid키값을 만들어서 에러구문을 담음
       //{userid: '아이디를 5글자 이상 입력하세요'}
       // console.log(errs);
+    if(!val.email || val.email.length < 8){
+      errs.email = '이메일주소를 8글자이상 입력';
+    }
     return errs;
   }
 
@@ -49,6 +53,12 @@ function Join() {
   useEffect(()=>{
     //해당 코드 블록안에서 err스테이트에 담겨있는 객체값이 비어있으면 모든 인증을 통과한 상태라서 회원가입 완료처리
     console.log(err);
+    const len = Object.keys(err).length;
+    if(len === 0 ){
+      console.log('모든 인풋요소 인증통과')
+    }else{
+      console.log('인증실패');
+    }
   },[err]);
 
   return (
@@ -79,11 +89,27 @@ function Join() {
                   </td>
                 </tr>
                 <tr>
+                  <th scope="row">
+                    <label htmlFor="email">E-MAIL</label>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder="email을 입력하세요"
+                      value={val.email}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
                   <th colSpan='2'>
                     <input type="reset" value='CANCEL' />
                     <input type="submit" value='SEND'/>
                   </th>
                 </tr>
+
               </tbody>
             </table>
 
