@@ -10,7 +10,12 @@ function Join() {
 
   //input에 변화점이 생길때마다 실행될 함수
   const handleChange = e =>{
-    console.log(e.target);
+    const {name, value} = e.target;
+    //const name = e.target.name
+    //const value = e.target.value
+    // console.log(`name:${name}, value:${value}`);
+    setVal({...val, [name]: value})
+    console.log(val);
   }
 
   return (
