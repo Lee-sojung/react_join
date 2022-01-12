@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Join() {
   //state로 관리할 초기 value값들
@@ -8,7 +8,6 @@ function Join() {
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const[val, setVal] = useState(initVal);
   const[err,setErr] = useState({});
-  const[isSubmit,setIsSubmit] = useState(false);
 
   //input에 변화점이 생길때마다 실행될 함수
   const handleChange = e =>{
@@ -39,13 +38,18 @@ function Join() {
     const spc = /[!@#$%^&*]/;
 
     //현재 스테이트 val의 userid값이 비어있거나 5글자 미만일때만 
-    if( !val.userid || val.userid.length < 5){
+    if( !val.userid || val.userid.length < 5) errs.userid = '아이디 5글자 이상 입력';
       //비어있는 err객체에 userid키값을 만들어서 에러구문을 담음
-      errs.userid = '아이디를 5글자 이상 입력하세요'
-    }
-    console.log(errs);
+      //{userid: '아이디를 5글자 이상 입력하세요'}
+      // console.log(errs);
     return errs;
   }
+
+  //전송 버튼을 눌러서 err state값이 바뀔때에만 호출
+  useEffect(()=>{
+    //해당 코드 블록안에서 err스테이트에 담겨있는 객체값이 비어있으면 모든 인증을 통과한 상태라서 회원가입 완료처리
+    console.log(err);
+  },[err]);
 
   return (
     <main className="join">
