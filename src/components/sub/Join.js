@@ -293,7 +293,7 @@ function Join() {
 
                 {/*btn set*/}
                 <tr>
-                  <th colSpan='2'>
+                  <th colSpan='2' className="btnSet">
                     <input type="reset" value='CANCEL' />
                     <input type="submit" value='SEND' />
                   </th>

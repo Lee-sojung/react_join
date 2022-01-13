@@ -28,6 +28,9 @@ body {
   top: -99999px;
   opacity: 0; }
 
+label, input {
+  vertical-align: middle; }
+
 header {
   width: 100%;
   background: #333; }
@@ -65,6 +68,8 @@ main {
       font: 30px/1 "arial";
       color: #333;
       margin-bottom: 20px; }
+      main > .inner h1 a {
+        color: #333; }
 
 footer {
   width: 100%;
@@ -228,6 +233,48 @@ figure {
     color: #fff;
     cursor: pointer; }
 
+.join .inner table {
+  width: 100%;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333; }
+  .join .inner table th, .join .inner table td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 30px; }
+  .join .inner table th {
+    width: 20%;
+    border-right: 1px solid #ddd;
+    text-align: left;
+    font: bold 14px/1 "arial";
+    color: #555; }
+    .join .inner table th.btnSet {
+      text-align: center; }
+      .join .inner table th.btnSet input[type=reset], .join .inner table th.btnSet input[type=submit] {
+        width: 150px;
+        height: 32px;
+        border: 1px solid #555;
+        text-align: center;
+        margin: 10px;
+        cursor: pointer;
+        transition: 0.5s; }
+        .join .inner table th.btnSet input[type=reset]:hover, .join .inner table th.btnSet input[type=submit]:hover {
+          background: #555;
+          color: #fff; }
+  .join .inner table td input[type=text], .join .inner table td input[type=password], .join .inner table td select {
+    width: 60%;
+    padding: 10px 20px;
+    border: 1px solid #aaa; }
+  .join .inner table td textarea {
+    width: 60%;
+    padding: 10px 20px;
+    border: 1px solid #aaa;
+    height: 150px;
+    resize: none; }
+  .join .inner table td label {
+    font: 12px/1 "arial";
+    color: #777;
+    margin-right: 5px; }
+  .join .inner table td input[type=radio], .join .inner table td input[type=checkbox] {
+    margin-right: 20px; }
 .join .inner .err {
   font: 11px/1 "맑은고딕";
   color: red; }
