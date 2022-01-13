@@ -9,7 +9,8 @@ function Join() {
     email: "",
     comments: "",
     gender: "",
-    interests:""
+    interests: "",
+    edu: ""
   }
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const [val, setVal] = useState(initVal);
@@ -35,6 +36,12 @@ function Join() {
     const isCheck = e.target.checked;
     //val state에 해당 네임을 키, boolean값을 value로 저장
     setVal({ ...val, [name]: isCheck });
+  }
+
+  const handleSelect = e =>{
+    const {name} = e.target;
+    const isSelected = e.target.options[e.target.selectedIndex].value;
+    setVal({...val, [name]: isSelected});
   }
 
   //submit 이벤트 발생하면 실행되는 함수
@@ -81,6 +88,10 @@ function Join() {
 
     if (!val.interests) {
       errs.interests = '관심사를 하나 이상 선택하세요'
+    }
+
+    if(!val.edu){
+      errs.edu = '학력을 선택해 주세요'
     }
     return errs;
   }
@@ -263,6 +274,24 @@ function Join() {
                   </td>
                 </tr>
 
+                {/*education*/}
+                <tr>
+                  <th scope="row">
+                    <label htmlFor="edu">EDUCATION</label>
+                  </th>
+                  <td>
+                    <select name="edu" id="edu" onChange={handleSelect}>
+                      <option value="">학력을 선택하세요</option>
+                      <option value="elementqary school">초등학교 졸업</option>
+                      <option value="middle school">중학교 졸업</option>
+                      <option value="high school">고등학교 졸업</option>
+                      <option value="college">대학교 졸업</option>
+                    </select>
+                    <span className="err">{err.edu}</span>
+                  </td>
+                </tr>
+
+                {/*btn set*/}
                 <tr>
                   <th colSpan='2'>
                     <input type="reset" value='CANCEL' />
