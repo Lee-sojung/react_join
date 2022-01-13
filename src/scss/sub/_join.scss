@@ -1,66 +1,113 @@
-.join{
-    .inner{
+.join {
+	.inner {
+		table {
+			width: 100%;
+			border-top: 2px solid #333;
+			border-bottom: 2px solid #333;
 
-        table{
-            width: 100%;
-            border-top: 2px solid #333;
-            border-bottom:  2px solid #333;
+			th,
+			td {
+				border-bottom: 1px solid #ddd;
+				padding: 10px 30px;
+			}
+			th {
+				width: 20%;
+				border-right: 1px solid #ddd;
+				text-align: left;
+				font: bold 14px/1 "arial";
+				color: #555;
 
-            th, td{
-                border-bottom: 1px solid #ddd;
-                padding: 10px 30px;
-            }
-            th{
-                width: 20%;
-                border-right: 1px solid #ddd;
-                text-align: left;
-                font: bold 14px/1 "arial";
-                color: #555;
+				&.btnSet {
+					text-align: center;
+					border-right: none;
 
-                &.btnSet{
-                    text-align: center;
+					input[type="reset"],
+					input[type="submit"] {
+						width: 150px;
+						height: 32px;
+						border: 1px solid #555;
+						text-align: center;
+						margin: 10px;
+						cursor: pointer;
+						transition: 0.5s;
 
-                    input[type=reset], input[type=submit]{
-                        width: 150px; height: 32px;
-                        border: 1px solid #555;
-                        text-align: center;
-                        margin: 10px;
-                        cursor: pointer;
-                        transition: 0.5s;
+						&:hover {
+							background: #555;
+							color: #fff;
+						}
+					}
+				}
+			}
+			td {
+				input[type="text"],
+				input[type="password"],
+				select {
+					width: 60%;
+					padding: 10px 20px;
+					border: 1px solid #aaa;
+					// box-shadow: inset 3px 3px 10px rgba(0,0,0,.1);
+				}
+				textarea {
+					width: 60%;
+					padding: 10px 20px;
+					border: 1px solid #aaa;
+					height: 150px;
+					resize: none;
+				}
+				label {
+					font: 12px/1 "arial";
+					color: #777;
+					margin-right: 5px;
+				}
+				input[type="radio"],
+				input[type="checkbox"] {
+					margin-right: 20px;
+				}
+			}
+		}
+		.err {
+			font: 11px/1 "맑은고딕";
+			color: red;
+		}
+	}
+}
 
-                        &:hover{
-                            background: #555;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-            td{
-                input[type=text], input[type=password], select{
-                    width: 60%; padding: 10px 20px;
-                    border: 1px solid #aaa;
-                    // box-shadow: inset 3px 3px 10px rgba(0,0,0,.1);
-                }
-                textarea{
-                    width: 60%;
-                    padding: 10px 20px;
-                    border: 1px solid #aaa;
-                    height: 150px;
-                    resize: none;
-                }
-                label{
-                    font: 12px/1 "arial";
-                    color: #777;
-                    margin-right: 5px;
-                }
-                input[type=radio], input[type=checkbox]{
-                    margin-right: 20px;
-                }
-            }
-        }
-        .err{
-            font: 11px/1 "맑은고딕";
-            color: red;
-        }
-    }
+@media screen and (max-width: $web) {
+	.join .inner table td {
+		input[type="text"],
+		input[type="password"],
+		select {
+			width: 90%;
+		}
+		textarea {
+			width: 90%;
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.join .inner table th {
+		position: absolute;
+		top: -99999px;
+		opacity: 0;
+
+		&.btnSet {
+			position: relative;
+            top: 0px;
+            opacity: 1;
+		}
+	}
+	.join .inner table td {
+		input[type="text"],
+		input[type="password"],
+		select {
+			width: 100%;
+		}
+		textarea {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
 }

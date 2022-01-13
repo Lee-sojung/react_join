@@ -84,7 +84,7 @@ footer {
       color: #888;
       text-align: center; }
 
-@media screen and (max-width: 1179px) {
+@media screen and (max-width: 1199px) {
   header .inner {
     width: 100%; }
     header .inner h1 {
@@ -111,11 +111,6 @@ figure {
     width: 1180px;
     min-height: 300px;
     margin: 0px auto; }
-
-#box {
-  width: 200px;
-  height: 200px;
-  background: hotpink; }
 
 .gallery .inner > section::after {
   content: "";
@@ -237,7 +232,8 @@ figure {
   width: 100%;
   border-top: 2px solid #333;
   border-bottom: 2px solid #333; }
-  .join .inner table th, .join .inner table td {
+  .join .inner table th,
+  .join .inner table td {
     border-bottom: 1px solid #ddd;
     padding: 10px 30px; }
   .join .inner table th {
@@ -247,8 +243,10 @@ figure {
     font: bold 14px/1 "arial";
     color: #555; }
     .join .inner table th.btnSet {
-      text-align: center; }
-      .join .inner table th.btnSet input[type=reset], .join .inner table th.btnSet input[type=submit] {
+      text-align: center;
+      border-right: none; }
+      .join .inner table th.btnSet input[type="reset"],
+      .join .inner table th.btnSet input[type="submit"] {
         width: 150px;
         height: 32px;
         border: 1px solid #555;
@@ -256,10 +254,13 @@ figure {
         margin: 10px;
         cursor: pointer;
         transition: 0.5s; }
-        .join .inner table th.btnSet input[type=reset]:hover, .join .inner table th.btnSet input[type=submit]:hover {
+        .join .inner table th.btnSet input[type="reset"]:hover,
+        .join .inner table th.btnSet input[type="submit"]:hover {
           background: #555;
           color: #fff; }
-  .join .inner table td input[type=text], .join .inner table td input[type=password], .join .inner table td select {
+  .join .inner table td input[type="text"],
+  .join .inner table td input[type="password"],
+  .join .inner table td select {
     width: 60%;
     padding: 10px 20px;
     border: 1px solid #aaa; }
@@ -273,10 +274,35 @@ figure {
     font: 12px/1 "arial";
     color: #777;
     margin-right: 5px; }
-  .join .inner table td input[type=radio], .join .inner table td input[type=checkbox] {
+  .join .inner table td input[type="radio"],
+  .join .inner table td input[type="checkbox"] {
     margin-right: 20px; }
 .join .inner .err {
   font: 11px/1 "맑은고딕";
   color: red; }
+
+@media screen and (max-width: 1199px) {
+  .join .inner table td input[type="text"],
+  .join .inner table td input[type="password"],
+  .join .inner table td select {
+    width: 90%; }
+  .join .inner table td textarea {
+    width: 90%; } }
+@media screen and (max-width: 739px) {
+  .join .inner table th {
+    position: absolute;
+    top: -99999px;
+    opacity: 0; }
+    .join .inner table th.btnSet {
+      position: relative;
+      top: 0px;
+      opacity: 1; }
+
+  .join .inner table td input[type="text"],
+  .join .inner table td input[type="password"],
+  .join .inner table td select {
+    width: 100%; }
+  .join .inner table td textarea {
+    width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

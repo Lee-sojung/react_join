@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+$web : 1199px;
+$tablet : 739px;
+$mobile : 539px;
+
 //common style
 @import "common/reset";
 @import "common/layout";
@@ -7,11 +11,6 @@
 //main style
 @import "main/visual";
 @import "main/info";
-
-#box {
-  width: 200px; height: 200px;
-  background: hotpink;
-}
 
 //sub page style
 @import "sub/department";
