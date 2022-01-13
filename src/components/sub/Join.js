@@ -8,7 +8,8 @@ function Join() {
     pwd2: "",
     email: "",
     comments: "",
-    gender:""
+    gender: "",
+    interests:""
   }
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const [val, setVal] = useState(initVal);
@@ -27,13 +28,13 @@ function Join() {
     setVal({ ...val, [name]: value });
   }
 
-  const handleCheck = e =>{
+  const handleCheck = e => {
     //해당 함수가 실행된 대상의 name값 변수에 저장
     const { name } = e.target;
     //이벤트 대상의 체크 유무를 boolean값으로 저장
     const isCheck = e.target.checked;
     //val state에 해당 네임을 키, boolean값을 value로 저장
-    setVal({...val, [name]: isCheck });
+    setVal({ ...val, [name]: isCheck });
   }
 
   //submit 이벤트 발생하면 실행되는 함수
@@ -74,8 +75,12 @@ function Join() {
     if (!val.comments || val.comments.length < 10) {
       errs.comments = '남기는말을 10글자 이상 입력';
     }
-    if(!val.gender){
+    if (!val.gender) {
       errs.gender = '성별을 선택하세요'
+    }
+
+    if (!val.interests) {
+      errs.interests = '관심사를 하나 이상 선택하세요'
     }
     return errs;
   }
@@ -206,20 +211,55 @@ function Join() {
                   <td>
                     <label htmlFor="male">MALE</label>
                     <input
-                    type="radio"
-                    id="male"
-                    name="gender"
-                    onChange={handleCheck}
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      onChange={handleCheck}
                     />
 
                     <label htmlFor="female">FEMALE</label>
                     <input
-                    type="radio"
-                    id="female"
-                    name="gender"
-                    onChange={handleCheck}
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      onChange={handleCheck}
                     />
                     <span className="err">{err.gender}</span>
+                  </td>
+                </tr>
+
+                {/*interests*/}
+                <tr>
+                  <th scope="row">
+                    INTERESTS
+                  </th>
+                  <td>
+                    <label htmlFor="male">SPORTS</label>
+                    <input
+                      type="checkbox"
+                      id="sports"
+                      name="interests"
+                      onChange={handleCheck}
+                    />
+
+                    <label htmlFor="female">MUSIC</label>
+                    <input
+                      type="checkbox"
+                      id="music"
+                      name="interests"
+                      onChange={handleCheck}
+                    />
+
+
+                    <label htmlFor="female">GAME</label>
+                    <input
+                      type="checkbox"
+                      id="game"
+                      name="interests"
+                      onChange={handleCheck}
+                    />
+
+                    <span className="err">{err.interests}</span>
                   </td>
                 </tr>
 
