@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Join() {
   //state로 관리할 초기 value값들
@@ -7,13 +7,15 @@ function Join() {
     pwd1: "",
     pwd2: "",
     email: "",
-    comments: ""
+    comments: "",
+    gender:""
   }
   //usestate로 초기 value값을 state에 답아서 관리 시작
   const [val, setVal] = useState(initVal);
   const [err, setErr] = useState({});
-  const[isSubmit,setIsSubmit]= useState(false);
-  const[success,setSuccess] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [success, setSuccess] = useState(false);
+
 
   //input에 변화점이 생길때마다 실행될 함수
   const handleChange = e => {
@@ -22,9 +24,16 @@ function Join() {
     //const value = e.target.value
     // console.log(`name:${name}, value:${value}`);
     //현재 비어있는 초기 객체값을 내가 현재 입력하고 있는 새로운 value값으로 계속 덮어쓰기
-    setVal({ ...val, [name]: value })
-    //{userid:""}+{userid: 문자}
-    console.log(val);
+    setVal({ ...val, [name]: value });
+  }
+
+  const handleCheck = e =>{
+    //해당 함수가 실행된 대상의 name값 변수에 저장
+    const { name } = e.target;
+    //이벤트 대상의 체크 유무를 boolean값으로 저장
+    const isCheck = e.target.checked;
+    //val state에 해당 네임을 키, boolean값을 value로 저장
+    setVal({...val, [name]: isCheck });
   }
 
   //submit 이벤트 발생하면 실행되는 함수
@@ -35,6 +44,7 @@ function Join() {
     //setErr로 기존의 err값을 변경
     //변경할 err객체내용을 반환해주는 check함수 호출
     setErr(check(val));
+    console.log(val);
   }
 
   //에러객체를 반환하는 함수
@@ -61,8 +71,11 @@ function Join() {
       errs.email = '이메일주소를 8글자이상 입력';
     }
 
-    if (!val.comments || val.comments.length <10) {
+    if (!val.comments || val.comments.length < 10) {
       errs.comments = '남기는말을 10글자 이상 입력';
+    }
+    if(!val.gender){
+      errs.gender = '성별을 선택하세요'
     }
     return errs;
   }
@@ -77,7 +90,7 @@ function Join() {
     if (len === 0 && isSubmit) {
       console.log('인증성공')
       setSuccess(true);
-      
+
     } else {
       console.log('인증실패');
       setSuccess(false);
@@ -89,7 +102,7 @@ function Join() {
       <div className="inner">
         <h1><a href="#">Join</a></h1>
 
-        {success ? <div>회원가입을 축하합니다.</div> : null }
+        {success ? <div>회원가입을 축하합니다.</div> : null}
 
         <form onSubmit={handleSubmit}>
           <fieldset>
@@ -109,7 +122,7 @@ function Join() {
                       id="userid"
                       name="userid"
                       placeholder="id를 입력하세요"
-                      value={val.userid}
+                      // value={val.userid}
                       onChange={handleChange}
                     />
                     <span className="err">{err.userid}</span>
@@ -126,7 +139,7 @@ function Join() {
                       id="pwd1"
                       name="pwd1"
                       placeholder="비밀번호를 입력하세요"
-                      value={val.pwd1}
+                      // value={val.pwd1}
                       onChange={handleChange}
                     />
                     <span className="err">{err.pwd1}</span>
@@ -143,7 +156,7 @@ function Join() {
                       id="pwd2"
                       name="pwd2"
                       placeholder="비밀번호를   재입력하세요"
-                      value={val.pwd2}
+                      // value={val.pwd2}
                       onChange={handleChange}
                     />
                     <span className="err">{err.pwd2}</span>
@@ -160,7 +173,7 @@ function Join() {
                       id="email"
                       name="email"
                       placeholder="email을 입력하세요"
-                      value={val.email}
+                      // value={val.email}
                       onChange={handleChange}
                     />
                     <span className="err">{err.email}</span>
@@ -179,12 +192,37 @@ function Join() {
                       id="comments"
                       name="comments"
                       placeholder="남기는 말을 적어주세요"
-                      value={val.comments}
+                      // value={val.comments}
                       onChange={handleChange}
                     ></textarea>
                     <span className="err">{err.comments}</span>
                   </td>
                 </tr>
+                {/*gender*/}
+                <tr>
+                  <th scope="row">
+                    GENDER
+                  </th>
+                  <td>
+                    <label htmlFor="male">MALE</label>
+                    <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    onChange={handleCheck}
+                    />
+
+                    <label htmlFor="female">FEMALE</label>
+                    <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    onChange={handleCheck}
+                    />
+                    <span className="err">{err.gender}</span>
+                  </td>
+                </tr>
+
                 <tr>
                   <th colSpan='2'>
                     <input type="reset" value='CANCEL' />
