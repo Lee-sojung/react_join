@@ -8,6 +8,8 @@ function Location() {
   const container = useRef(null);
   //생성된 map인스턴스가 담길 state생성
   const [map,setMap] = useState(null);
+  //순서값을 index스테이트에 넣어서 관리
+  const[index,setIndex] = useState(0);
   //state에 담을 초기 정보값
   const info = [
     {
@@ -50,11 +52,13 @@ function Location() {
     //마커 호출 인스턴스 (호출시 mapInfo라는 state에서 정보값 호출)
     new kakao.maps.Marker({
       map: map, // 마커를 표시할 지도
-      position: mapInfo[0].latlng, // 마커를 표시할 위치
-      title : mapInfo[0].title, // 마커의 타이틀 
-      image : new kakao.maps.MarkerImage(mapInfo[0].imgSrc, mapInfo[0].imgSize, mapInfo[0].imgPos)  // 마커 이미지 
+      position: mapInfo[index].latlng, // 마커를 표시할 위치
+      title : mapInfo[index].title, // 마커의 타이틀 
+      image : new kakao.maps.MarkerImage(mapInfo[index].imgSrc, mapInfo[index].imgSize, mapInfo[index].imgPos)  // 마커 이미지 
     });
-  }, []);
+
+    map.setCenter(mapInfo[index].latlng)
+  }, [index]); //의존성에 index스테이트를 추가해 추후 순서값이 바뀔때마다 지도 다시 랜더링
 
   return (
     <main className="location">
@@ -77,13 +81,14 @@ function Location() {
         <ul className="branch">
           {/*각각의 버튼 클릭시 mapInfo state에서 정보값  */}
           <li onClick={()=>{
-            map.setCenter(mapInfo[0].latlng);
+            //지점 버튼 클릭시 index state변경
+            setIndex(0);
           }}>본점</li>
           <li onClick={()=>{
-            map.setCenter(mapInfo[1].latlng);
+            setIndex(1);
           }}>지점1</li>
           <li onClick={()=>{
-            map.setCenter(mapInfo[2].latlng);
+            setIndex(2);
           }}>지점2</li>
         </ul>
       </div>
