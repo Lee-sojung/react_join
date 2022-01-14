@@ -34,13 +34,13 @@ function Location() {
     }
   ];
 
-  const [mapInfo,setMapInfo] = useState(info[0]);
+  const [mapInfo,setMapInfo] = useState(info);
 
   //컴포넌트 생성시
   useEffect(() => {
     const options = {
       center: new kakao.maps.LatLng(37.5132313, 127.0594368),
-      level: 1
+      level: 3
     };
 
     //카카오맵 생성자로부터 인스턴스 복사해서 맵 실행
@@ -50,9 +50,9 @@ function Location() {
     //마커 호출 인스턴스 (호출시 mapInfo라는 state에서 정보값 호출)
     new kakao.maps.Marker({
       map: map, // 마커를 표시할 지도
-      position: mapInfo.latlng, // 마커를 표시할 위치
-      title : mapInfo.title, // 마커의 타이틀 
-      image : new kakao.maps.MarkerImage(mapInfo.imgSrc, mapInfo.imgSize, mapInfo.imgPos)  // 마커 이미지 
+      position: mapInfo[0].latlng, // 마커를 표시할 위치
+      title : mapInfo[0].title, // 마커의 타이틀 
+      image : new kakao.maps.MarkerImage(mapInfo[0].imgSrc, mapInfo[0].imgSize, mapInfo[0].imgPos)  // 마커 이미지 
     });
   }, []);
 
@@ -72,6 +72,19 @@ function Location() {
           <li onClick={()=>{
             map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);  
           }}>교통정보 끄기</li>
+        </ul>
+
+        <ul className="branch">
+          {/*각각의 버튼 클릭시 mapInfo state에서 정보값  */}
+          <li onClick={()=>{
+            map.setCenter(mapInfo[0].latlng);
+          }}>본점</li>
+          <li onClick={()=>{
+            map.setCenter(mapInfo[1].latlng);
+          }}>지점1</li>
+          <li onClick={()=>{
+            map.setCenter(mapInfo[2].latlng);
+          }}>지점2</li>
         </ul>
       </div>
     </main>
