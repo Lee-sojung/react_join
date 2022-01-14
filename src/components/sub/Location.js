@@ -6,6 +6,8 @@ function Location() {
   const { kakao } = window;
   //useRef로 #map참조
   const container = useRef(null);
+
+  const btnBranch = useRef(null);
   //생성된 map인스턴스가 담길 state생성
   const [map,setMap] = useState(null);
   //순서값을 index스테이트에 넣어서 관리
@@ -58,7 +60,7 @@ function Location() {
     });
 
     map.setCenter(mapInfo[index].latlng);
-    
+
     //지도 타입변경 패널 프레임에 생성
     const mapTypeControl = new kakao.maps.MapTypeControl();
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
@@ -66,6 +68,10 @@ function Location() {
     map.setZoomable(true);
     //마우스 드래그기능 활성화
     map.setDraggable(true);
+
+    //모든 버튼 초기화한뒤, index, state번째의 li요소만 활성화
+    for(const btn of btnBranch.current.children) btn.classList.remove('on');
+    btnBranch.current.children[index].classList.add('on');
 
     const mapSet = ()=>map.setCenter(mapInfo[index].latlng);
     //윈도우가 리사이즈시 마커 위치 중앙배치 고정
@@ -94,7 +100,7 @@ function Location() {
           }}>교통정보 끄기</li>
         </ul>
 
-        <ul className="branch">
+        <ul className="branch" ref={btnBranch}>
           {/*각각의 버튼 클릭시 mapInfo state에서 정보값  */}
           <li onClick={()=>{
             //지점 버튼 클릭시 index state변경
