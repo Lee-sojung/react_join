@@ -136,6 +136,22 @@ figure {
   background: pink;
   position: relative; }
 
+#btns {
+  position: fixed;
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%); }
+  #btns li {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: #fff;
+    margin-bottom: 20px;
+    cursor: pointer; }
+    #btns li.on {
+      height: 80px;
+      color: #111; }
+
 .gallery .inner > section::after {
   content: "";
   display: block;

@@ -9,6 +9,7 @@ import Visual from './components/main/Visual.js';
 import News from './components/main/News.js';
 import Intro from './components/main/Intro.js';
 import Info from './components/main/Info.js';
+import Btns from './components/main/Btns.js';
 //import sub component
 import Department from './components/sub/Department.js';
 import Community from './components/sub/Community.js';
@@ -16,12 +17,14 @@ import Gallery from './components/sub/Gallery.js';
 import Youtube from './components/sub/Youtube.js';
 import Location from './components/sub/Location.js';
 import Join from './components/sub/Join.js';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function App() {
   const main = useRef(null);
   //useRef로 값이 변경될때마다 재렌더링을 막으면서 특정값을 컴포넌트에서 사용해야 될때
   let pos = useRef([]);
+  //버튼 클릭할때마다 변경될 순서값을 담을 state추가
+  const [index, setIndex] = useState(0);
 
   const getPos = () => {
     //참조된 main요소 안쪽의 myScroll박스를 모두 찾아서 
@@ -57,6 +60,7 @@ function App() {
             <News />
             <Intro />
             <Info />
+            <Btns />
           </div>
         </Route>
 
