@@ -44,6 +44,7 @@ function Location() {
 
   //컴포넌트 생성시
   useEffect(() => {
+    container.current.innerHTML="";
     const options = {
       center: mapInfo[index].latlng,
       level: 3
@@ -80,8 +81,9 @@ function Location() {
     window.addEventListener('resize', mapSet);
 
     //해당 컴포넌트가 사라질때 기존 window에 등록된 이벤트 제거
-    return () => window.removeEventListener('resize', mapSet);
-
+    return () => {
+      window.removeEventListener('resize', mapSet);
+    }
   }, [index]); //의존성에 index스테이트를 추가해 추후 순서값이 바뀔때마다 지도 다시 랜더링
 
   return (
