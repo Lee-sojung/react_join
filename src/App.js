@@ -25,8 +25,11 @@ function App() {
   let pos = useRef([]);
   //버튼 클릭할때마다 변경될 순서값을 담을 state추가
   const [index, setIndex] = useState(0);
+  const getIndex = index=>{
+    setIndex(index);
+  }
 
-  const getPos = () => {
+  const handleResize = () => {
     //참조된 main요소 안쪽의 myScroll박스를 모두 찾아서 
     //해당 요소의 세로위치값을 배열에 담아서
     //다시 useRef로 참조한 pos변수에 옮겨담음
@@ -34,19 +37,24 @@ function App() {
     let arr = [];
     for (let sec of secs) arr.push(sec.offsetTop);
     pos.current = arr;
-    console.log(pos.current);
   }
 
   useEffect(() => {
     //처음 컴포넌트 생성시 배열값 생성
-    getPos();
-
+    handleResize();
     //브라우저가 리사이즈 될 떄마다 getPos호출해서 배열값 갱신
-    window.addEventListener('resize', getPos);
+    window.addEventListener('resize', handleResize);
+
+    new Anime(window,{
+      prop: 'scroll',
+      value: pos.current[index],
+      duration: 500
+    })
+
     return () => {
-      window.removeEventListener('resize',getPos);
+      window.removeEventListener('resize',handleResize);
     }
-  }, []);
+  }, [index]);
 
 
   return (
@@ -60,7 +68,7 @@ function App() {
             <News />
             <Intro />
             <Info />
-            <Btns />
+            <Btns getIndex={getIndex} />
           </div>
         </Route>
 
