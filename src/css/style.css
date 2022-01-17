@@ -58,6 +58,14 @@ header {
           font: 14px/1 "arial";
           color: #fff; }
 
+header.main {
+  background: #fff; }
+  header.main #gnb li a {
+    color: #555; }
+
+header.sub {
+  background: #111; }
+
 main {
   padding: 100px 0px; }
   main > .inner {

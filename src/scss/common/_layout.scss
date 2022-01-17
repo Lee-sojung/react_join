@@ -1,6 +1,7 @@
 header {
   width: 100%; background: #333;
 
+
   .inner {
     width: 1180px; height: 100px; margin: 0px auto; position: relative;
 
@@ -26,6 +27,17 @@ header {
     }
   }
 
+}
+
+header.main {
+  background: #fff;
+
+  #gnb li a {
+    color: #555;
+  }
+}
+header.sub{
+  background: #111;
 }
 
 main {

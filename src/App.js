@@ -1,6 +1,6 @@
 import './css/style.css';
 import Anime from './class/anime.js';
-import {Route} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 //import common component
 import Header from './components/common/Header.js';
@@ -22,55 +22,46 @@ import { useEffect, useRef } from 'react';
 
 function App() {
   let box = useRef(null);
-  useEffect(()=>{
-    window.addEventListener("scroll",test);
+  useEffect(() => {
+    window.addEventListener("scroll", test);
 
-    return ()=>{
+    return () => {
       console.log("컴포넌트 사라짐");
       window.removeEventListener("scroll", test);
     }
-  },[]);
+  }, []);
 
-  function test(){
+  function test() {
     console.log("scroll");
   }
 
   return (
-    <div className="App">    
-      <Header />
+    <div className="App">
+      {/*switch-같은 경로의 라우터가 복수개 연결되었을때 상단의 라우터만 연결 처리*/}
+      <Switch>
+        <Route exact path="/">
+          <Header type={'main'} />
+          <Visual />
+          <Info />
+        </Route>
 
-      <Route exact path="/">
-        <Visual />
-        {/* 해당 버튼 클릭시 useRef로 참조된 박스 이동 */}
-        <button onClick={()=>{
-          new Anime(box.current,{
-            prop: 'margin-left',
-            value: 600,
-            duration: 500
-          })
-        }}>박스이동</button>
+        <Route path='/'>
+        <Header type={'sub'} />
+      </Route>
 
-        {/* 해당 버튼 클릭시 window의 스크롤 이동 */}
-        <button onClick={()=>{
-          new Anime(window,{
-            prop: 'scroll',
-            value: 100,
-            duration: 1000
-          })
-        }}>스크롤이동</button>
+      </Switch>
 
-        <div id="box" ref={box}></div>
-        <Info />
-      </Route>      
 
-      <Route  path="/department" component={Department}></Route>
-      <Route  path="/community" component={Community}></Route>
-      <Route  path="/gallery" component={Gallery}></Route>
-      <Route  path="/youtube" component={Youtube}></Route>
-      <Route  path="/location" component={Location}></Route>
-      <Route  path="/join" component={Join}></Route>      
 
-      <Footer />  
+
+      <Route path="/department" component={Department}></Route>
+      <Route path="/community" component={Community}></Route>
+      <Route path="/gallery" component={Gallery}></Route>
+      <Route path="/youtube" component={Youtube}></Route>
+      <Route path="/location" component={Location}></Route>
+      <Route path="/join" component={Join}></Route>
+
+      <Footer />
     </div>
   );
 }
