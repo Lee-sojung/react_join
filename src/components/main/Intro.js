@@ -1,6 +1,6 @@
 function Intro() {
     return (
-        <section id="intro">
+        <section id="intro" className="myScroll">
 
         </section>
     )

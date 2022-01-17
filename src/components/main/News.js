@@ -1,6 +1,6 @@
 function News() {
     return (
-        <section id="news">
+        <section id="news" className="myScroll">
 
         </section>
     )

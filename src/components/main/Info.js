@@ -1,6 +1,6 @@
 function Info(){
   return (
-    <section id="info">
+    <section id="info"className="myScroll">
       
     </section>
   )
