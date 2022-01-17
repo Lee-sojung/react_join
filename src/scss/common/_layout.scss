@@ -41,7 +41,12 @@ header.sub{
 }
 
 main {
+  transition: 1s; opacity: 0; transform: translateY(100px);
   padding: 100px 0px;
+  &.on{
+    opacity: 1;
+    transform: translateY(0px);
+  }
 
   >.inner {
     width: 1180px; min-height: 500px; margin: 0px auto;

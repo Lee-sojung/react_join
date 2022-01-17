@@ -1,6 +1,8 @@
 function Visual(){
   return (
-    <figure></figure>
+    <figure>
+      
+    </figure>
   )
 }
 

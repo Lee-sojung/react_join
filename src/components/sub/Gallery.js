@@ -1,9 +1,12 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
+import { useRef } from "react";
 
 const body = document.querySelector("body");
 
 function Gallery(){
+  const frame = useRef(null);
+
   let [items, setItems] = useState([]);
   let [isPop, setIsPop] = useState(false);
   //썸네일 클릭 이벤트 발생시 해당 순번값을 관리하는 state생성
@@ -14,6 +17,7 @@ function Gallery(){
   const url = `https://www.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${api_key}&per_page=100&format=json&nojsoncallback=1`;
 
   useEffect(()=>{
+    frame.current.classList.add('on');
     axios
       .get(url)
       .then(json=>{
@@ -23,7 +27,7 @@ function Gallery(){
   },[]);
 
   return (
-    <main className="gallery">
+    <main ref={frame} className="gallery">
       <div className="inner">
         <h1><a href="#">Gallery</a></h1>
 
