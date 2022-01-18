@@ -4,7 +4,7 @@ function Header(props){
   const active = {color: "aqua"};
 
   return (
-    <header className={props.type}>
+    <header className={props.type+ 'myScroll'}>
       <div className="inner">
         <h1><NavLink activeStyle={active} exact to="/">LOGO</NavLink></h1>
 
