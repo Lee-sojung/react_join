@@ -7,7 +7,7 @@ function Community() {
 
   //기존 포소트목록에서 새로운 포스트를 추가하는 함수
   const insertPost = () => {
-    setPostlist([...postList, post])
+    setPostlist([post, ...postList])
   }
 
   const deletePost = delIndex =>{
