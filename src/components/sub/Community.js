@@ -10,6 +10,12 @@ function Community() {
     setPostlist([...postList, post])
   }
 
+  const deletePost = delIndex =>{
+    setPostlist(
+      postList.filter((post, index)=>(index !== delIndex))
+    )
+  }
+
   //글 입력해서 컴포넌트 재 랜더링시
   useEffect(() => {
     frame.current.classList.add('on');
@@ -40,13 +46,14 @@ function Community() {
 
         <section className="showList">
           {
+            //기존 배열값을 역순으로 화면에 출력
             postList.map((post, index)=>{
         return(
           <article
             key={index}
           >
             <p>{post}</p>
-            <span>del</span>
+            <span onClick={()=> deletePost(index)}>del</span>
           </article>
           )
       })
