@@ -153,6 +153,16 @@ figure {
       height: 80px;
       background: #111; }
 
+.community .inner .showList article {
+  width: 100%;
+  border: 1px solid #aaa;
+  margin-bottom: 20px 0px;
+  padding: 20px; }
+  .community .inner .showList article span {
+    cursor: pointer;
+    color: hotpink;
+    font-size: 12px; }
+
 .gallery .inner > section::after {
   content: "";
   display: block;

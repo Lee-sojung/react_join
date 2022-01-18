@@ -1,8 +1,10 @@
 import './css/style.css';
 import { Route, Switch } from 'react-router-dom';
+
 //import common component
 import Header from './components/common/Header.js';
 import Footer from './components/common/Footer.js';
+
 //import main component
 import Main from './components/main/Main.js';
 
@@ -21,6 +23,7 @@ function App() {
       {/* Switch-같은 경로의 라우터가 복수개 연결되었을떄 상단의 라우터만 연결 처리 */}
       <Switch>
         <Route exact path="/">
+
           <Main />
         </Route>
 
@@ -35,7 +38,6 @@ function App() {
       <Route path="/youtube" component={Youtube}></Route>
       <Route path="/location" component={Location}></Route>
       <Route path="/join" component={Join}></Route>
-
       <Footer />
     </div>
   );

@@ -1,38 +1,59 @@
-import axios from "axios";
-import {useEffect, useState} from "react";
+import React, { useEffect, useRef, useState } from 'react'
+function Community() {
+  const frame = useRef(null);
+  const input = useRef(null);
+  const [post, setPost] = useState('');
+  const [postList, setPostlist] = useState([]);
 
-function Community(){
-  let [posts, setPosts] = useState([]);
-  const path= process.env.PUBLIC_URL;
-  const url = `${path}/db/community.json`;
+  //기존 포소트목록에서 새로운 포스트를 추가하는 함수
+  const insertPost = () => {
+    setPostlist([...postList, post])
+  }
 
-  useEffect(()=>{
-    axios
-      .get(url)
-      .then(json=>{
-        console.log(json.data.data);
-        setPosts(json.data.data);
-      })
-  },[]);
+  //글 입력해서 컴포넌트 재 랜더링시
+  useEffect(() => {
+    frame.current.classList.add('on');
+    //기존 input요소 비우고
+    setPost('');
+    //추가된 리스트 목록 콘솔 출력
+    console.log(postList);
+  }, [postList])
 
   return (
-    <main>
+    <main ref={frame} className='community content'>
       <div className="inner">
-        <h1><a href="#">Community</a></h1>
-        {
-          posts.map((data, index)=>{
-            return (
-              <article key={index}>
-                <h1>{data.title}</h1>
-                <span>{data.writer}</span>
-                <em>{data.date}</em>
-              </article>
-            )
-          })
-        }          
+        <h1>Community</h1>
+        <section className="inputBox">
+          <input
+            ref={input}
+            type="text"
+            value={post}
+            //changeEvent가 발생할때마다 post값  변경
+            onChange={e => setPost(e.target.value)}
+          />
+          {/* 저장버튼 클릭시 insertPost함수 호출해서 글저장 */}
+          <button
+            onClick={insertPost}
+          >save
+          </button>
+        </section>
+
+        <section className="showList">
+          {
+            postList.map((post, index)=>{
+        return(
+          <article
+            key={index}
+          >
+            <p>{post}</p>
+            <span>del</span>
+          </article>
+          )
+      })
+    }
+        </section>
       </div>
     </main>
   )
 }
-
 export default Community;

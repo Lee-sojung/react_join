@@ -1,0 +1,18 @@
+.community{
+    .inner{
+        .showList{
+            article{
+                width: 100%;
+                border: 1px solid #aaa;
+                margin-bottom: 20px 0px;
+                padding: 20px;
+
+                span{
+                    cursor: pointer;
+                    color: hotpink;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
