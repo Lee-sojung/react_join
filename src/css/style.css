@@ -198,6 +198,18 @@ figure {
       .community .inner .showBox article .post p {
         font: 12px/1.2 "arial";
         color: #777; }
+      .community .inner .showBox article .post input {
+        width: 70%;
+        padding: 5px 10px;
+        border: 1px solid skyblue;
+        background: lightcyan;
+        margin-bottom: 5px; }
+      .community .inner .showBox article .post textarea {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid skyblue;
+        background: lightcyan;
+        resize: none; }
     .community .inner .showBox article .btns {
       display: flex;
       justify-content: center;

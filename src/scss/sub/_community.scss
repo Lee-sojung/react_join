@@ -49,6 +49,18 @@
                         font: 12px/1.2 "arial";
                         color: #777;
                     }
+                    input{
+                        width: 70%; padding: 5px 10px;
+                        border: 1px solid skyblue;
+                        background: lightcyan;
+                        margin-bottom: 5px;
+                    }
+                    textarea{
+                        width: 70%; padding: 10px;
+                        border: 1px solid skyblue;
+                        background: lightcyan;
+                        resize: none;
+                    }
                 }
                 .btns{
                     display: flex; justify-content: center; align-items: center;
