@@ -25,6 +25,14 @@ function Community() {
     textarea.current.value='';
   }
 
+  //인수로 받은 순번의 포스트만 삭제하는 함수
+  const deletePost=index=>{
+    setPosts(
+      // filter는 기본 배열을 받아서 조건식을 추가해 특정 조건이 성립하는 데이터만 다시 새롭게 반환하는 함수
+      posts.filter((post, postIndex)=> postIndex !== index)
+    )
+  }
+
   useEffect(() => {
     frame.current.classList.add('on');
   }, []);
@@ -55,7 +63,7 @@ function Community() {
                   </div >
                   <ul className="btns">
                     <li>수정</li>
-                    <li>삭제</li>
+                    <li onClick={()=>deletePost(index)}>삭제</li>
                   </ul>
                 </article>
               )
