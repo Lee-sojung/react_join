@@ -153,15 +153,45 @@ figure {
       height: 80px;
       background: #111; }
 
-.community .inner .showList article {
+.community .inner .inputBox {
   width: 100%;
-  border: 1px solid #aaa;
-  margin-bottom: 20px 0px;
-  padding: 20px; }
-  .community .inner .showList article span {
-    cursor: pointer;
-    color: hotpink;
-    font-size: 12px; }
+  padding: 50px;
+  margin-bottom: 50px;
+  border: 1px solid #aaa; }
+  .community .inner .inputBox input {
+    width: 60%;
+    padding: 5px 10px;
+    border: 1px solid #bbb;
+    margin-bottom: 10px; }
+  .community .inner .inputBox textarea {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    margin-bottom: 15px;
+    resize: none; }
+  .community .inner .inputBox button {
+    width: 150px;
+    height: 30px;
+    background: #555;
+    border: none;
+    color: #fff;
+    margin-right: 10px; }
+.community .inner .showBox {
+  width: 100%;
+  padding: 50px;
+  border: 1px solid #aaa; }
+  .community .inner .showBox article {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    margin-bottom: 20px; }
+    .community .inner .showBox article h2 {
+      font: bold 20px/1 "arial";
+      color: #555;
+      margin-bottom: 5px; }
+    .community .inner .showBox article p {
+      font: 12px/1.2 "arial";
+      color: #777; }
 
 .gallery .inner > section::after {
   content: "";
