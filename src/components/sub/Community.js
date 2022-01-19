@@ -11,6 +11,7 @@ function Community() {
     {title: 'Hello', content: 'Here comes description in detail.'}
   ]);
 
+  //기존 posts 배열에 새로운 post추가 함수
   const createPost=()=>{
     setPosts([
       {
@@ -48,8 +49,14 @@ function Community() {
             posts.map((posts, index)=>{
               return(
                 <article key={index}>
-                  <h2>{posts.title}</h2>
-                  <p>{posts.content}</p>
+                  <div className='post'>
+                    <h2>{posts.title}</h2>
+                    <p>{posts.content}</p>
+                  </div >
+                  <ul className="btns">
+                    <li>수정</li>
+                    <li>삭제</li>
+                  </ul>
                 </article>
               )
             })
