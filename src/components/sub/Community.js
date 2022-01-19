@@ -8,29 +8,53 @@ function Community() {
   const showBox = useRef(null);
 
   const [posts, setPosts] = useState([
-    {title: 'Hello', content: 'Here comes description in detail.'}
+    { title: 'Hello0', content: 'Here comes description in detail.' },
+    { title: 'Hello1', content: 'Here comes description in detail1.' },
+    { title: 'Hello2', content: 'Here comes description in detail2.' },
+    { title: 'Hello3', content: 'Here comes description in detail3.' }
   ]);
 
   //기존 posts 배열에 새로운 post추가 함수
-  const createPost=()=>{
+  const createPost = () => {
     setPosts([
       {
         title: input.current.value,
         content: textarea.current.value
       }
-      ,...posts
+      , ...posts
     ]);
 
-    input.current.value='';
-    textarea.current.value='';
+    input.current.value = '';
+    textarea.current.value = '';
   }
 
   //인수로 받은 순번의 포스트만 삭제하는 함수
-  const deletePost=index=>{
+  const deletePost = index => {
     setPosts(
       // filter는 기본 배열을 받아서 조건식을 추가해 특정 조건이 성립하는 데이터만 다시 새롭게 반환하는 함수
-      posts.filter((post, postIndex)=> postIndex !== index)
+      posts.filter((post, postIndex) => postIndex !== index)
     )
+    console.log(posts);
+  }
+
+  //출력모드에서 수정모드로 변경하는 함수
+  const enableUpdate = index => {
+    setPosts(
+      posts.map((post, postIndex) => {
+        if (postIndex === index) post.enableUpdate = true;
+        return post;
+      })
+    )
+  }
+
+  //수정모드에서 다시 출력모드로 변경하는 함수
+  const disableUpdate = index => {
+
+  }
+
+  //실제 포스트를 수정해서 업데이트하는 함수
+  const updatePost = index => {
+
   }
 
   useEffect(() => {
@@ -43,9 +67,9 @@ function Community() {
         <h1>Community</h1>
 
         <section className="inputBox">
-          <input type="text" placeholder='제목을 입력하세요' ref={input}/> <br/>
-          <textarea cols="30" rows="10" placeholder='본문을 입력하세요' ref={textarea}></textarea> <br/>
-          <button onClick={()=>{
+          <input type="text" placeholder='제목을 입력하세요' ref={input} /> <br />
+          <textarea cols="30" rows="5" placeholder='본문을 입력하세요' ref={textarea}></textarea> <br />
+          <button onClick={() => {
             input.current.value = '';
             textarea.current.value = '';
           }}>cancle</button>
@@ -54,16 +78,40 @@ function Community() {
 
         <section className="showBox" ref={showBox}>
           {
-            posts.map((posts, index)=>{
-              return(
+            posts.map((post, index) => {
+              return (
                 <article key={index}>
                   <div className='post'>
-                    <h2>{posts.title}</h2>
-                    <p>{posts.content}</p>
+                    {
+                      //post.enableUpdate의 값이 true라면
+                      post.enableUpdate
+                        ?
+                        <>
+                          <input type="text" defaultValue={post.title} />
+                          <textarea defaultValue={post.content}></textarea>
+
+                        </>
+                        :
+                        <>
+                          <h2>{post.title}</h2>
+                          <p>{post.content}</p>
+                        </>
+                    }
                   </div >
+
                   <ul className="btns">
-                    <li>수정</li>
-                    <li onClick={()=>deletePost(index)}>삭제</li>
+                    {
+                      post.enableUpdate
+                        ?
+                        <>
+                          <li onClick={() => updatePost(index)}>입력</li>
+                          <li onClick={() => disableUpdate(index)}>취소</li>
+                        </>
+                        :
+                        <li onClick={() => enableUpdate(index)}>수정</li>
+
+                    }
+                    <li onClick={() => deletePost(index)}>삭제</li>
                   </ul>
                 </article>
               )
