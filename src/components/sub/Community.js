@@ -5,6 +5,8 @@ function Community() {
   const frame = useRef(null);
   const input = useRef(null);
   const textarea = useRef(null);
+  const updateInput = useRef(null);
+  const updateTextarea= useRef(null);
   const showBox = useRef(null);
 
   const [posts, setPosts] = useState([
@@ -16,6 +18,10 @@ function Community() {
 
   //기존 posts 배열에 새로운 post추가 함수
   const createPost = () => {
+    if(!input.current.value || !textarea.current.value){
+      alert('제목과 본문을 입력하세요');
+      return;
+    }
     setPosts([
       {
         title: input.current.value,
@@ -59,14 +65,18 @@ function Community() {
 
   //실제 포스트를 수정해서 업데이트하는 함수
   const updatePost = index => {
+    if(!updateInput.current.value || updateTextarea.current.value){
+      alert('수정할 제목과 본문을 모두 입력하세요');
+      return;
+    }
     setPosts(
       posts.map((post, postIndex)=>{
         if(postIndex === index){
-          const article = showBox.current.children[index];
-          const input = article.querySelector('input');
-          const textarea = article.querySelector('textarea');
-          post.title = input.value;
-          post.content = textarea.value;
+          //const article = showBox.current.children[index];
+          //const input = article.querySelector('input');
+          //const textarea = article.querySelector('textarea');
+          post.title = updateInput.current.value;
+          post.content = updateTextarea.current.value;
           post.enableUpdate = false;
         }
         return post;
@@ -104,8 +114,8 @@ function Community() {
                       //수정모드
                       <>
                         <div className="post">
-                          <input type="text" defaultValue={post.title} /><br/>
-                          <textarea defaultValue={post.content}></textarea>
+                          <input type="text" defaultValue={post.title} ref={updateInput}/><br/>
+                          <textarea defaultValue={post.content} ref={updateTextarea}></textarea>
                         </div>
 
                         <ul className="btns">
