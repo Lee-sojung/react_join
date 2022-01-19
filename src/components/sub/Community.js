@@ -81,38 +81,35 @@ function Community() {
             posts.map((post, index) => {
               return (
                 <article key={index}>
-                  <div className='post'>
-                    {
-                      //post.enableUpdate의 값이 true라면
-                      post.enableUpdate
-                        ?
-                        <>
+                  {
+                    post.enableUpdate
+                      ?
+                      //수정모드
+                      <>
+                        <div className="post">
                           <input type="text" defaultValue={post.title} />
                           <textarea defaultValue={post.content}></textarea>
+                        </div>
 
-                        </>
-                        :
-                        <>
-                          <h2>{post.title}</h2>
-                          <p>{post.content}</p>
-                        </>
-                    }
-                  </div >
-
-                  <ul className="btns">
-                    {
-                      post.enableUpdate
-                        ?
-                        <>
+                        <ul className="btns">
                           <li onClick={() => updatePost(index)}>입력</li>
                           <li onClick={() => disableUpdate(index)}>취소</li>
-                        </>
-                        :
-                        <li onClick={() => enableUpdate(index)}>수정</li>
+                        </ul>
+                      </>
+                      :
+                      //출력모드
+                      <>
+                      <div className="post">
+                      <h2>{post.title}</h2>
+                          <p>{post.content}</p>
+                      </div>
 
-                    }
-                    <li onClick={() => deletePost(index)}>삭제</li>
-                  </ul>
+                      <ul className="btns">
+                      <li onClick={() => enableUpdate(index)}>수정</li>
+                      <li onClick={() => deletePost(index)}>삭제</li>
+                      </ul>
+                    </>
+                  }
                 </article>
               )
             })
