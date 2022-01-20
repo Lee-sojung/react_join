@@ -14,7 +14,12 @@ function Community() {
     if(data){
       return JSON.parse(data);
     }else{
-      return [];
+      return [
+        { title: 'Hello0', content: 'Here comes description in detail.' },
+        { title: 'Hello1', content: 'Here comes description in detail1.' },
+        { title: 'Hello2', content: 'Here comes description in detail2.' },
+        { title: 'Hello3', content: 'Here comes description in detail3.' }
+      ];
     }
   }
   const [posts, setPosts] = useState(getLocalItems);
