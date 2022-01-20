@@ -9,12 +9,24 @@ function Community() {
   const updateTextarea= useRef(null);
   const showBox = useRef(null);
 
+  const getLocalItems = ()=>{
+    let data = localStorage.getItem('posts');
+    if(data){
+      return JSON.parse(data);
+    }else{
+      return [];
+    }
+  }
+  const [posts, setPosts] = useState(getLocalItems);
+
+/*
   const [posts, setPosts] = useState([
     { title: 'Hello0', content: 'Here comes description in detail.' },
     { title: 'Hello1', content: 'Here comes description in detail1.' },
     { title: 'Hello2', content: 'Here comes description in detail2.' },
     { title: 'Hello3', content: 'Here comes description in detail3.' }
   ]);
+  */
 
   //기존 posts 배열에 새로운 post추가 함수
   const createPost = () => {
@@ -65,7 +77,7 @@ function Community() {
 
   //실제 포스트를 수정해서 업데이트하는 함수
   const updatePost = index => {
-    if(!updateInput.current.value || updateTextarea.current.value){
+    if(!updateInput.current.value || !updateTextarea.current.value){
       alert('수정할 제목과 본문을 모두 입력하세요');
       return;
     }
@@ -85,8 +97,9 @@ function Community() {
   }
 
   useEffect(() => {
+    localStorage.setItem('posts', JSON.stringify(posts));
     frame.current.classList.add('on');
-  }, []);
+  }, [posts]);
 
   return (
     <main ref={frame} className='community content'>
