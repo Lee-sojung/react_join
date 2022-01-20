@@ -1,20 +1,29 @@
+import { useEffect, useState } from "react";
+
 function News() {
 
-    const getLocalItems=()=>{
+    const getLocalItems = () => {
         let data = localStorage.getItem('posts');
-        
-        if(data){
-            //데이터값 6개까지만 메인페이지에 출력
-            let result= JSON.parse(data);
+
+        if (data) {
+            let result = JSON.parse(data);
             result = result.splice(0,6);
             return result;
-        }else{
-            return [];
+        } else {
+            return [
+                { title: 'Hello0', content: 'Here comes description in detail.' },
+                { title: 'Hello1', content: 'Here comes description in detail1.' },
+                { title: 'Hello2', content: 'Here comes description in detail2.' },
+                { title: 'Hello3', content: 'Here comes description in detail3.' }
+            ];
         }
     }
+    const [posts] = useState(getLocalItems);
 
-    const posts = getLocalItems();
-    console.log(posts);
+    useEffect(() => {
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }, [posts])
+
     return (
         <section id="news" className="myScroll">
             <div className="inner">
@@ -22,8 +31,8 @@ function News() {
 
                 <div className="textbox">
                     {
-                        posts.map((post,index)=>{
-                            return(
+                        posts.map((post, index) => {
+                            return (
                                 <article key={index}>
                                     <h3>{post.title}</h3>
                                     <p>{post.content}</p>
