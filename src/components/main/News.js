@@ -4,7 +4,10 @@ function News() {
         let data = localStorage.getItem('posts');
         
         if(data){
-            return JSON.parse(data);
+            //데이터값 6개까지만 메인페이지에 출력
+            let result= JSON.parse(data);
+            result = result.splice(0,6);
+            return result;
         }else{
             return [];
         }
