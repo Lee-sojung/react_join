@@ -2,27 +2,27 @@ import { useEffect, useState } from "react";
 
 function News() {
 
+    const basic = [
+        { title: 'Hello0', content: 'Here comes description in detail.' },
+        { title: 'Hello1', content: 'Here comes description in detail1.' },
+        { title: 'Hello2', content: 'Here comes description in detail2.' },
+        { title: 'Hello3', content: 'Here comes description in detail3.' }
+    ];
+
     const getLocalItems = () => {
         let data = localStorage.getItem('posts');
 
         if (data) {
-            let result = JSON.parse(data);
-            result = result.splice(0,6);
-            return result;
+            return JSON.parse(data);
         } else {
-            return [
-                { title: 'Hello0', content: 'Here comes description in detail.' },
-                { title: 'Hello1', content: 'Here comes description in detail1.' },
-                { title: 'Hello2', content: 'Here comes description in detail2.' },
-                { title: 'Hello3', content: 'Here comes description in detail3.' }
-            ];
+            return basic;
         }
     }
     const [posts] = useState(getLocalItems);
 
     useEffect(() => {
         localStorage.setItem('posts', JSON.stringify(posts));
-    }, [posts])
+    }, [])
 
     return (
         <section id="news" className="myScroll">
