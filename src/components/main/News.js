@@ -32,12 +32,14 @@ function News() {
                 <div className="textbox">
                     {
                         posts.map((post, index) => {
-                            return (
-                                <article key={index}>
-                                    <h3>{post.title}</h3>
-                                    <p>{post.content}</p>
-                                </article>
-                            )
+                            if(index<6){
+                                return (
+                                    <article key={index}>
+                                        <h3>{post.title}</h3>
+                                        <p>{post.content}</p>
+                                    </article>
+                                )
+                            }
                         })
                     }
                 </div>
