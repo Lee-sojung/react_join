@@ -3,4 +3,15 @@
     height: 100vh;
     background: lightgreen;
     position: relative;
+    padding: 150px 0;
+
+    .inner{
+        width: 1180px;
+        margin: 0px auto;
+
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
 }
