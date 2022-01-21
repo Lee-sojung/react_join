@@ -22,9 +22,19 @@ const memberReducer = (state=initMember, action)=>{
     }
 }
 
+const youtubeReducer=(state={youtube:[]}, action)=>{
+    switch (action.type) {
+        case 'SET_YOUTUBE' :
+            return{...state, youtube: action.payload}
+
+            default:
+                return state;
+    }
+}
+
 //여러개의 reducer들을 하나로 합쳐서 반환
 const reducers = combineReducers({
-    memberReducer
+    memberReducer,youtubeReducer
 })
 
 export default reducers;
