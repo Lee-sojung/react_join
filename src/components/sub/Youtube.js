@@ -4,46 +4,45 @@
   3. 각각의 가상DOM요소 클릭시 레이어팝업 동적으로 생성
   4. 해당 레이어팝업 안쪽에 데이터와, 순서관련 state값을 활용해서 세부 컨텐츠 출력
 */
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-function Youtube(){
+function Youtube() {
   const frame = useRef(null);
   let [isPop, setIsPop] = useState(false);
   let [index, setIndex] = useState(0);
 
-  const youtube = useSelector(state=>state);
+  const youtube = useSelector(state => state);
   const vidData = youtube.youtubeReducer.youtube;
 
-  useEffect(()=>{
+  useEffect(() => {
     frame.current.classList.add('on');
-  },[]);
+  }, []);
 
   return (
-    <main className="youtube">
+    <main className="youtube" ref={frame}>
       <div className="inner">
         <h1><a href="#">Youtube</a></h1>
 
         <section className="frame">
-          {            
-            vidData.map((item, index)=>{
+          {
+            vidData.map((item, index) => {
               let tit = item.snippet.title;
               let tit_len = tit.length;
               let desc = item.snippet.description;
-              let desc_len = desc.length;              
-
+              let desc_len = desc.length;
               return (
                 <article key={index}>
-                  <div className="inner">  
+                  <div className="inner">
                     <div className="txt">
-                      <h2>{(tit_len > 30) ? tit =  tit.substr(0,30)+"..." : tit}</h2>
-                      <p>{(desc_len > 150) ? desc =  desc.substr(0,150)+"..." : desc}</p>
+                      <h2>{(tit_len > 30) ? tit = tit.substr(0, 30) + "..." : tit}</h2>
+                      <p>{(desc_len > 150) ? desc = desc.substr(0, 150) + "..." : desc}</p>
                     </div>
-                    <div className="pic" onClick={()=>{
+                    <div className="pic" onClick={() => {
                       setIsPop(true);
                       setIndex(index);
                     }}>
-                      <img src={item.snippet.thumbnails.medium.url} />                      
+                      <img src={item.snippet.thumbnails.medium.url} />
                     </div>
                   </div>
                 </article>
@@ -51,24 +50,21 @@ function Youtube(){
             })
           }
         </section>
-
         {isPop ? <Pop /> : null}
       </div>
     </main>
   )
-
-  function Pop(){    
+  function Pop() {
     return (
       <aside className="pop">
-        <iframe 
-          src={"https://www.youtube.com/embed/"+vidData[index].snippet.resourceId.videoId}  width='100%' height='100%' allowFullScreen
+        <iframe
+          src={"https://www.youtube.com/embed/" + vidData[index].snippet.resourceId.videoId} width='100%' height='100%' allowFullScreen
         ></iframe>
-        <span onClick={()=>{
+        <span onClick={() => {
           setIsPop(false);
         }}>close</span>
       </aside>
     )
   }
 }
-
 export default Youtube;

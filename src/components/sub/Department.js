@@ -30,8 +30,9 @@ function Department(){
         {/*버튼 클릭시 action의 setMemeber로 type과 payload가 포함된 action객체를 dispatch를 통해 reducer에 전달*/}
         <button onClick={()=>{
           //const newMembers=[];
-          members[0] = {name:'tom', position: 'CEO'};
-          //dispatch(setMembers(members))
+          const newMembers = [...members];
+          newMembers[0] = {name:'tom', position: 'CEO'};
+          dispatch(setMembers(newMembers))
         }}> 멤버변경</button>
       </div>
     </main>

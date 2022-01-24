@@ -35,9 +35,11 @@ function Info(){
         <div className="vidBox">
           {
             vidData.map((vid,index)=>{
-              return (
-                <img key={index} src={vid.snippet.thumbnails.medium.url} />
-              )
+              if(index<4){
+                return (
+                  <img key={index} src={vid.snippet.thumbnails.medium.url} />
+                )
+              }
             })
           }
         </div>
