@@ -1,4 +1,4 @@
-import { Navigation, Pagination } from 'swiper';
+import { EffectCoverflow, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -10,9 +10,11 @@ function Visual() {
     <figure >
       <Swiper
         // install Swiper modules
-        modules={[Navigation, Pagination]}
-        spaceBetween={0}
-        slidesPerView={'auto'}
+        modules={[Navigation, Pagination, EffectCoverflow]}
+        effect='coverflow'
+        spaceBetween={50}
+        slidesPerView={3}
+        grabCursor
         loop
         navigation
         pagination={{ clickable: true }}
