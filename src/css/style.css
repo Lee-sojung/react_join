@@ -116,7 +116,17 @@ footer {
 figure {
   width: 100%;
   height: calc(100vh - 100px);
-  background: cyan; }
+  background: #111; }
+  figure .swiper {
+    height: 100%; }
+    figure .swiper .swiper-slide {
+      background: aqua;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10vw;
+      color: #fff; }
 
 #news {
   width: 100%;
