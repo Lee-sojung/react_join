@@ -3,4 +3,16 @@
     height: 100vh;
     background: pink;
     position: relative;
+    padding: 150px 0;
+
+    .inner{
+        width: 1180px;
+        margin: 0 auto;
+        position: relative;
+
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
 }
