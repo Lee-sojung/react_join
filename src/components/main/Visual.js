@@ -14,6 +14,13 @@ function Visual() {
         effect='coverflow'
         spaceBetween={50}
         slidesPerView={3}
+        coverflowEffect = {{
+          rotate: 80,
+          stretch:0,
+          depth:100,
+          modifier:1,
+          slideShadow: true
+        }}
         grabCursor
         loop
         navigation
